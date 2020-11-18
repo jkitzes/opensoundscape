@@ -28,27 +28,119 @@ developers contributing to the code). Either way, Python 3.7 or higher is requir
 
 Already familiar with installing python packages via pip? The pip command to install OpenSoundscape is `pip install opensoundscape==0.4.5`.
 
-### Detailed instructions
-
-Python 3.7 is required to run OpenSoundscape. Download it from [this website](https://www.python.org/downloads/).
-
-We recommend installing OpenSoundscape in a virtual environment to prevent dependency conflicts. Below are instructions for installation with Python's included virtual environment manager, `venv`, but feel free to use another virtual environment manager (e.g. `conda`, `virtualenvwrapper`) if desired.
-
-Run the following commands in your bash terminal:
-* Check that you have installed Python 3.7.\_: `python3 --version`
-* Change directories to where you wish to store the environment: `cd [path for environments folder]`
-    * Tip:  You can use this folder to store virtual environments for other projects as well, so put it somewhere that makes sense for you, e.g. in your home directory.
-* Make a directory for virtual environments and `cd` into it: `mkdir .venv && cd .venv`
-* Create an environment called `opensoundscape` in the directory: `python3 -m venv opensoundscape`
-* **For Windows computers:** activate/use the environment: `opensoundscape\Scripts\activate.bat`
-* **For Mac computers:** activate/use the environment `source opensoundscape/bin/activate`
-* Install OpenSoundscape in the environment: `pip install opensoundscape==0.4.5`
-* Once you are done with OpenSoundscape, deactivate the environment: `deactivate`
-* To use the environment again, you will have to refer to absolute path of the virtual environments folder. For instance, if I were on a Mac and created `.venv` inside a directory `/Users/MyFiles/Code` I would activate the virtual environment using: `source /Users/MyFiles/Code/.venv/opensoundscape/bin/activate`
+### Linux and Mac installation
+OpenSoundscape requires Python 3.7 and a variety of Python packages. You have several options for how to install these dependencies. We recommend installing OpenSoundscape in a virtual environment to prevent dependency conflicts. Below are demonstrations of creating a virtual environment containing OpenSoundscape using Anaconda or `venv`. 
 
 For some of our functions, you will need a version of `ffmpeg >= 0.4.1`. On Mac machines, `ffmpeg` can be installed via `brew`.
 
-## Installation via poetry (contributors and advanced users)
+#### Example 1: Anaconda
+
+First, download Anaconda for your computer here: https://www.anaconda.com/products/individual. Follow instructions for installing Anaconda and adding it to your PATH. Then, open your bash terminal and run the following commands:
+* Create a new virtual environment named `opensoundscape` containing Python 3.7. and `pip`: 
+
+      conda create -n opensoundscape python=3.7 pip
+      
+* Activate the new environment 
+
+      conda activate opensoundscape
+
+* Use `pip` to install OpenSoundscape 
+ 
+      pip install opensoundscape==0.4.5
+
+#### Example 2: `venv` 
+First, obtain Python 3.7 from [this website](https://www.python.org/downloads/). Then, run the following commands in your bash terminal:
+* Check that you have installed Python 3.7.\_
+
+      python3 --version
+      
+* Change directories to where you wish to store the environment. You can use this folder to store virtual environments for other projects as well, so put it somewhere that makes sense for you, e.g. in your home directory.
+
+      cd [path for environments folder]
+      
+* Make a directory for virtual environments and `cd` into it
+
+      mkdir .venv && cd .venv
+      
+* Create an environment called `opensoundscape` in the directory:
+
+      python3 -m venv opensoundscape
+      
+* Activate/use the environment
+
+      source opensoundscape/bin/activate
+     
+* Install OpenSoundscape in the environment
+
+      pip install opensoundscape==0.4.5
+      
+* Once you are done with OpenSoundscape, deactivate the environment
+
+      deactivate
+
+
+To use the environment again, you will have to refer to absolute path of the virtual environments folder. For instance, if I were on a Mac and created `.venv` inside a directory `/Users/MyFiles/Code` I would activate the virtual environment using: `source /Users/MyFiles/Code/.venv/opensoundscape/bin/activate`
+
+### Windows installation
+
+The easiest way to install OpenSoundscape on a Windows computer is to use the Windows Subsystem for Linux (WSL). 
+
+If you don't already use WSL (or don't know what it is):
+* Open Powershell as administrator
+* Copy and paste first command from https://docs.microsoft.com/en-us/windows/wsl/install-win10
+* Restart computer
+
+Once WSL is installed:
+* Open Windows Store, search for "Ubuntu"
+* Click "Ubuntu 20.04 LTS"
+* Click "Get"
+* Click "Install"
+* Click "Launch"
+* Set username and password to something you will remember
+* `sudo apt update`
+
+Next, download and initialize Anaconda (these are examples for one version of Anaconda; your commands may look slightly different):
+
+* Get the most recent Anaconda link under the "Linux" section on this page: https://www.anaconda.com/products/individual
+* Download Anaconda in WSL using wget, e.g. 
+
+      wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+  
+* Execute the downloaded file, e.g. 
+
+      bash Anaconda3-2020.07-Linux-x86_64.sh
+* Remove the downloaded file after installation, e.g.
+
+      rm Anaconda3-2020.07-Linux-x86_64.sh
+
+* Initialize your conda installation
+
+      source ~/anaconda3/bin/activate
+      conda init
+
+* Close and open terminal window to have access to the initialized conda
+
+Now create a `conda` environment for OpenSoundscape
+
+* Create a Python 3.7 conda environment for OpenSoundscape:
+
+      conda create -n opensoundscape python=3.7 pip
+      
+* Activate the environment
+
+      conda activate opensoundscape
+      
+* Install opensoundscape using pip
+
+      pip install opensoundscape==0.4.5
+
+If you want to use OpenSoundscape in JupyterLab:
+* Activate the environment
+* Start JupyterLab from inside the conda environment: `jupyter lab`
+* Copy and paste the link created into your browser
+
+
+## Installation via poetry (Linux and Mac; contributors and advanced users)
 Poetry installation allows direct use of the most recent version of the code.
 This workflow allows advanced users to use the newest features in OpenSoundscape,
 and allows developers/contributors to build and test their contributions.
